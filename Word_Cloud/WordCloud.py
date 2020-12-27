@@ -1,16 +1,15 @@
-import pandas as pd
 import string
-import regex as re
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 
+# dataset mengambil satu baris dalam text
 def readDataset(file):
     with open(file) as f:
         lines = f.readline().lower()
         f.close()
     lines = lines.translate(str.maketrans('', '', string.punctuation))
     res = ' '.join([i for i in lines.split(' ') if not i.isdigit()])
-    return res
+    return res #bentuk paragraph satu baris
 
 def readStopword(file):
     words = open('stopwords.txt', 'r') 
@@ -18,7 +17,7 @@ def readStopword(file):
     stop_words = []
     for line in lines: 
         stop_words.append(line.strip())
-    return stop_words
+    return stop_words # bentuk list
 
 dataset_ = readDataset('datatext.txt')
 stopword_ = readStopword('stopwords.txt')
